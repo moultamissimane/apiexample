@@ -15,7 +15,7 @@ $post = new Post($db);
 $result = $post->read();
 // get row count
 $num = $result->rowCount();
-// vheck if any posts
+// check if any posts
 if ($num > 0) {
     // post array
     $posts_arr = array();
