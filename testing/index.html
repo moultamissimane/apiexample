@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: black; color: aliceblue;">
+    <input type="number" id="number1">
+    <input type="number" id="number2">
+    <button  onclick="fetchMe()">Calculate</button>
+    <h3>result:</h3>
+    <h1 id="result"></h1>
+
+    <script>
+
+        const fetchMe = ()=>{
+        let res = document.getElementById('result')
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "bearer 11223344");
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "number1": document.getElementById('number1').value,
+            "number2":  document.getElementById('number2').value
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        res.innerHTML = 'isFetching...'
+
+        fetch("https://5237-196-121-162-142.ngrok.io/API/Multiplication.php", requestOptions)
+            .then(response => response.text())
+            .then(result => res.innerHTML = result)
+            .catch(error => console.log('error', error));
+        }
+
+    </script>
+</body>
+
+</html>
